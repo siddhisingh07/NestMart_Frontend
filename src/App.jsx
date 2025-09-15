@@ -53,26 +53,10 @@ const App = () => {
           }
         />
         <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <UserDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path="/my-orders"
           element={
             <ProtectedRoute>
               <MyOrders />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/userprofile"
-          element={
-            <ProtectedRoute>
-              <UserProfile />
             </ProtectedRoute>
           }
         />
