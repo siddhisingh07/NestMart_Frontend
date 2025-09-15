@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Card } from "../../Common/Card";
 import { HeadingClass } from "../../PropsClass";
+import { base_url } from "../../../constant";
 
 const RelatedProducts = (value) => {
   const [productData, setProductData] = useState(null);
@@ -33,7 +34,7 @@ const RelatedProducts = (value) => {
   //related product data
   const handleProductData = async () => {
     let res = await axios.get(
-      `http://localhost:3000/api/users/category/${category}/${id}`
+      `${base_url}/users/category/${category}/${id}`
     );
     setProduct(res.data.data);
   };

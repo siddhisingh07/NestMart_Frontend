@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Card } from "../Common/Card";
 import { CardSkeleton } from "../Sample/CardSkeleton";
+import { base_url } from "../../constant";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const ProductList = () => {
 
   const handleProductList = async () => {
     try {
-      let res = await axios.get("http://localhost:3000/api/users/products");
+      let res = await axios.get(`${base_url}/users/products`);
       setProductList(res.data.data);
     } catch (error) {
       toast.error(error.message);

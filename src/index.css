@@ -22,28 +22,3 @@
   background: #3bb77e; 
   color: #fff;        
 }
-
-@keyframes anime {
-  0% {
-    background-image: url("./Assets/slider-1.png");
-    background-size: cover;
-  }
-  30% {
-    background-image: url("./Assets/slider-2.png");
-    background-size: cover;
-  }
-  90% {
-    background-image: url("./Assets/banner-2.png");
-    background-size: cover;
-  }
-  120% {
-    background-image: url("./Assets/banner1.png");
-    background-size: cover;
-  }
-}
-
-.banner{
-  animation: anime 5s infinite alternate ease-in-out;
-
-
-}

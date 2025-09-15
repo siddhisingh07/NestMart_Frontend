@@ -20,7 +20,7 @@ const CategorizedProduct = () => {
 
   const handleData = async () => {
   try {
-      let res = await axios.get(`http://localhost:3000/api/users/category/${category}`);
+      let res = await axios.get(`${base_url}/users/category/${category}`);
      setProductList(res.data.data);
   
   } catch (error) {

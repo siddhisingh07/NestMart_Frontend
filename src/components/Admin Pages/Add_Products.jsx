@@ -56,7 +56,7 @@ const Add_Products = () => {
 
     try {
       let res = await axios.post(
-        `http://localhost:3000/api/admin/add-product`,
+        `${base_url}/admin/add-product`,
         formData,
         {
           withCredentials: true,

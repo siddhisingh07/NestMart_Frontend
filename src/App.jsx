@@ -2,8 +2,6 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import { Routes, Route } from "react-router-dom";
-import UserProfile from "./components/UserProfile";
-import UserDashboard from "./components/UserPages/UserDashboard";
 import ProductList from "./components/GeneralPages/ProductList";
 import MyOrders from "./components/UserPages/MyOrders";
 import "./index.css";

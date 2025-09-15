@@ -5,6 +5,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Card } from "../Common/Card";
 import { CardSkeleton } from "../Sample/CardSkeleton";
+import { base_url } from "../../constant";
 
 const BestSellers = () => {
   const [productList, setProductList] = useState(null);
@@ -13,7 +14,7 @@ const BestSellers = () => {
 
   const handleProductList = async () => {
     try {
-      let res = await axios.get("http://localhost:3000/api/users/best-sellers");
+      let res = await axios.get(`${base_url}/users/best-sellers`);
       setProductList(res.data.data);
     } catch (error) {
       toast.error(error.message);

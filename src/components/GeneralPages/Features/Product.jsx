@@ -14,7 +14,7 @@ const Product = () => {
 
   const handleData = async () => {
     let res = await axios.get(
-      `http://localhost:3000/api/users/category/${category}/${id}`
+      `${base_url}/users/category/${category}/${id}`
     );
     setProduct(res.data.data);
   };

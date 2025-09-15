@@ -5,6 +5,7 @@ import { logo, profile } from "../Assets/Assets";
 import toast from "react-hot-toast";
 import { authContext } from "../Context/AuthContext";
 import axios from "axios";
+import { base_url } from "../constant";
 
 const Navbar = () => {
   const [open, setOpen] = React.useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
   const [resultData, setResultData] = useState([]);
   const logout = async () => {
     try {
-      let res = await axios.get("http://localhost:3000/api/users/logout", {
+      let res = await axios.get(`${base_url}/users/logout`, {
         withCredentials: true,
       });
       toast.success(res.data.message);

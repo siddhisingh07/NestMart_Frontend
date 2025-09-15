@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { product_1, product_1_back } from "../../../Assets/Assets";
 import { authContext } from "../../../Context/AuthContext";
+import { base_url } from "../../../constant";
 
 const AddToCart = () => {
   const [cart, setCart] = useState([]);
@@ -25,7 +26,7 @@ const AddToCart = () => {
   // Fetch cart from backend
   const handleCart = async () => {
     try {
-      let res = await axios.get("http://localhost:3000/api/cart/", {
+      let res = await axios.get(`${base_url}/cart/`, {
         withCredentials: true,
       });
       if (res.data?.data) {
@@ -79,7 +80,7 @@ const AddToCart = () => {
         shippingAddress,
       };
 
-      const res = await axios.post("http://localhost:3000/api/order", order, {
+      const res = await axios.post(`${base_url}/order`, order, {
         withCredentials: true,
       });
 

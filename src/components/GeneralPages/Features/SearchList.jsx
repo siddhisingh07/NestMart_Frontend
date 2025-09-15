@@ -6,6 +6,7 @@ import { HeadingClass } from "../../PropsClass";
 import { Card } from "../../Common/Card";
 import { CardSkeleton } from "../../Sample/CardSkeleton";
 import toast from "react-hot-toast";
+import { base_url } from "../../../constant";
 
 export const SearchList = () => {
   const [productList, setProductList] = useState(null);
@@ -18,7 +19,7 @@ export const SearchList = () => {
     const handleSearch = async () => {
       try {
         let res = await axios.get(
-          `http://localhost:3000/api/users/search?q=${query}`
+          `${base_url}/users/search?q=${query}`
         );
         console.log("API response:", res.data);
 
