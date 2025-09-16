@@ -8,6 +8,7 @@ import {base_url} from '../../constant'
 import { useNavigate } from "react-router-dom";
 import ShortCard from "../Common/ShortCard";
 import ShortCardSkelton from "../Sample/ShortCardSkelton";
+import { apiRequest } from "../../utils/apiRequest";
 
 const Analysis = () => {
   const navigate = useNavigate()
@@ -16,23 +17,25 @@ const Analysis = () => {
   const [bestDeals, setBestDeals] = useState(null);
 
   const topSellingFunction = async () => {
-    const res = await axios.get(`${base_url}/users/top-selling`);
+    let res = await apiRequest("GET", "/users/top-selling")
+
     if (res) {
-      setTopSelling(res.data.data);
+      setTopSelling(res.data);
     }
   };
 
   const recentlyAddedFunction = async () => {
-    const res = await axios.get(`${base_url}/users/recently-added`);
+    let res = await apiRequest("GET", "/users/recently-added")
     if (res) {
-      setRecentlyAdded(res.data.data);
+      setRecentlyAdded(res.data);
     }
   };
 
   const bestDealsFunction = async () => {
-    const res = await axios.get(`${base_url}/users/best-deals`);
+    let res = await apiRequest("GET", "/users/best-deals")
+
     if (res) {
-      setBestDeals(res.data.data);
+      setBestDeals(res.data);
     }
   };
 

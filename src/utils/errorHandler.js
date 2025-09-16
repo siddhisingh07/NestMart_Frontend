@@ -1,7 +1,6 @@
 import toast from "react-hot-toast"
 
 export const handleError = (error, navigate=null)=>{
-
     if(error.response){
         toast.error(error.response.data.message)
         console.log(error.response.data.message)

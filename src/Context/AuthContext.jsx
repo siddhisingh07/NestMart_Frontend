@@ -12,10 +12,10 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
     try {
-      const res = await apiRequest("GET", "/users/me")
-      //   const res = await axios.get(`${base_url}/users/me`, {
-      //   withCredentials: true,
-      // });
+      // const res = await apiRequest("GET", "/users/me")
+        const res = await axios.get(`${base_url}/users/me`, {
+        withCredentials: true,
+      });
       setUser(res.data)
     } catch (error) {
       setUser(null)
