@@ -10,6 +10,7 @@ import { base_url } from "../../../constant";
 import toast from "react-hot-toast";
 import { HeadingClass } from "../../PropsClass";
 import {Card} from '../../Common/Card'
+import { CardSkeleton } from "../../Sample/CardSkeleton";
 
 const CategorizedProduct = () => {
   const [productList, setProductList] = useState(null);
@@ -44,7 +45,7 @@ const CategorizedProduct = () => {
       />
         <div className="flex gap-4 flex-wrap">
           {productList == null ? (
-            <h1>Empty Product</h1>
+           <CardSkeleton/>
           ) : (
             productList.map((item, idx) => {
               let off =
@@ -52,7 +53,7 @@ const CategorizedProduct = () => {
             off = Math.abs(Math.round(off));
             item.off = off
               return (
-                <Card value={{item, idx}}/>
+                <Card value={{item, idx}} key={idx}/>
               );
             })
           )}

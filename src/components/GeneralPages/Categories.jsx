@@ -8,11 +8,11 @@ import { base_url } from "../../constant";
 import { useEffect, useState } from "react";
 import Card from "../Sample/Card";
 import { CategorySkeleton } from "../Sample/CategorySkeleton";
+import { apiRequest } from "../../utils/apiRequest";
 
 const Categories = () => {
   const navigate = useNavigate();
   const [categoryList, setCategoryList] = useState(null);
-  const [category, setCategory] = useState([])
   function getRandomPastelColor() {
     const r = Math.floor(150 + Math.random() * 90); // 150-255 for light shades
     const g = Math.floor(150 + Math.random() * 90);
@@ -28,9 +28,8 @@ const Categories = () => {
 
   const handleData = async () => {
     try {
-      let res = await axios.get(`${base_url}/users/category`);
-      setCategoryList(res.data.data);
-      console.log(res.data.data)
+      const res = await apiRequest("GET", "/users/category")
+      setCategoryList(res.data)
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +47,7 @@ const Categories = () => {
     }))
     setCategoryList(category)
    }
-  }, [categoryList])
+  }, [])
 
   return (
     <div className="w-ful px-3 md:px-10 lg:px-28 bg-gray-50 py-4">

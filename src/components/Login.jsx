@@ -7,6 +7,7 @@ import { toast, Toaster } from "react-hot-toast";
 import { base_url } from "../constant";
 import { useLocation, useNavigate } from "react-router-dom";
 import { authContext } from "../Context/AuthContext";
+import { apiRequest } from "../utils/apiRequest";
 
 const schema = yup
   .object()
@@ -20,16 +21,13 @@ const schema = yup
   .required();
 
 const Login = () => {
-  let { user, setUser } = useContext(authContext);
+  let {setUser } = useContext(authContext);
   const navigate = useNavigate();
 
   const location = useLocation();
 
-  // console.log(location)
-
     const from = location.state?.from?.pathname || "/"; 
 
-  console.log(from)
   const {
     register,
     handleSubmit,
@@ -40,12 +38,14 @@ const Login = () => {
 
   const submitHandler = async (data) => {
     try {
-      let response = await axios.post(`${base_url}/users/login`, data, {
-        withCredentials: true,
-      });
-      toast.success(response.data.message);
-      setUser(response.data.data.userData);
+      let res = await apiRequest("POST", "/users/login", data)
+      // let response = await axios.post(`${base_url}/users/login`, data, {
+      //   withCredentials: true,
+      // });
+      // toast.success(response.data.message);
+      setUser(res.data.userData);
       navigate(from, {replace : true}  );
+      console.log(res)
     } catch (error) {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message);

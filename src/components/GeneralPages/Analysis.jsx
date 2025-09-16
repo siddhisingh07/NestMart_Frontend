@@ -20,7 +20,6 @@ const Analysis = () => {
     if (res) {
       setTopSelling(res.data.data);
     }
-    console.log(res)
   };
 
   const recentlyAddedFunction = async () => {
@@ -54,8 +53,8 @@ const Analysis = () => {
         <div className=" h-full w-full lg:w-1/3">
           <Heading value={new HeadingClass("Top Selling", "start")} />
           {topSelling == null ?  ( [...Array(3)].map((_, i)=><ShortCardSkelton key={i}/>)) : (topSelling.length == 0  ? (<h1>No product is sold yet</h1>)  : (
-            topSelling.map((item) => (
-              <div className=" flex justify-between  shadow-sm mb-2 hover:-translate-y-1 duration-500 transition-transform" onClick={()=>handleClick(item._id, item.category)}>
+            topSelling.map((item, idx) => (
+              <div key={idx} className=" flex justify-between  shadow-sm mb-2 hover:-translate-y-1 duration-500 transition-transform" onClick={()=>handleClick(item._id, item.category)}>
                 <div className="w-1/3 ">
                   <img src={item.front} alt="" className="h-20 object-cover  " />
                 </div>
@@ -88,8 +87,8 @@ const Analysis = () => {
           {recentlyAdded == null || recentlyAdded.length == 0 ? (
             [...Array(3)].map((_, i)=><ShortCardSkelton key={i}/>)
           ) : (
-            recentlyAdded.map((item) => (
-              <div className=" flex justify-between  shadow-sm mb-2 hover:-translate-y-1 duration-500 transition-transform" onClick={()=>handleClick(item._id, item.category)}>
+            recentlyAdded.map((item, idx) => (
+              <div key={idx} className=" flex justify-between  shadow-sm mb-2 hover:-translate-y-1 duration-500 transition-transform" onClick={()=>handleClick(item._id, item.category)}>
                 <div className="w-1/3 ">
                   <img src={item?.front} alt="" className="h-20 object-cover  " />
                 </div>
@@ -122,8 +121,8 @@ const Analysis = () => {
           {bestDeals == null || bestDeals.length == 0 ? (
             [...Array(3)].map((_, i)=><ShortCardSkelton key={i}/>)
           ) : (
-            bestDeals.map((item) => (
-             <ShortCard value={item}/>
+            bestDeals.map((item, idx) => (
+             <ShortCard value={item}  key={idx}/>
             ))
           )}
         </div>

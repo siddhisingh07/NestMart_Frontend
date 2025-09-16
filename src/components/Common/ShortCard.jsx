@@ -11,7 +11,7 @@ const ShortCard = ({value}) => {
     const handleClick = (id, category) => {
     navigate(`/products/${category}/${id}`);
   };
-  console.log(value)
+  
   return (
      <div className=" flex justify-between items-center shadow-sm mb-2 hover:-translate-y-1 duration-500 transition-transform" onClick={()=>handleClick(value.product._id, value.product.category)}>
                 <div className="w-1/3 ">

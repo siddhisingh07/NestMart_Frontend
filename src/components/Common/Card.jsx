@@ -34,18 +34,17 @@ const handleCart = async (productId, price, quantity) => {
     toast.success(res.data.message || "Added to cart!");
     navigate("/cart");
   } catch (error) {
-    // Safely handle errors
-    if (error.response?.data?.message) {
-      toast.error(error.response.data.message);
-      if (error.response.status === 401) {
-        // Redirect only if not logged in
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000);
-      }
-    } else {
-      toast.error("Something went wrong, please try again.");
+    if(error.response){
+
     }
+    else if(error.request){
+
+    }else{
+
+    }
+    console.log(error)
+    toast.error(error.response.data.message)
+    navigate("/login")
   }
 };
 

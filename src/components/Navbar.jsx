@@ -28,7 +28,6 @@ const Navbar = () => {
     }
   };
 
-  console.log(user, role);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

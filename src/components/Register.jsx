@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { base_url } from "../constant";
+import { apiRequest } from "../utils/apiRequest";
 
 const schema = yup
   .object()
@@ -27,7 +28,8 @@ const Register = () => {
   });
   const submitHandler = async (data) => {
     try {
-      const response = await axios.post(`${base_url}/users/register`, data, { withCredentials: true } );
+      const res = await apiRequest("POST", "/users/register" , data)
+      // const response = await axios.post(`${base_url}/users/register`, data, { withCredentials: true } );
       toast.success(response.data?.message);
       navigate("/")
     } catch (error) {

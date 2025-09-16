@@ -41,7 +41,7 @@ const BestSellers = () => {
             item.off = off;
 
             return (
-              <Card value={{ item, idx }} />
+              <Card value={{ item, idx }} key={idx} />
             );
           })
         )}

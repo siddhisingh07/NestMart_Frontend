@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {createContext, useState, useEffect} from 'react'
 import { base_url } from '../constant';
+import { apiRequest } from '../utils/apiRequest';
 export const authContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -11,14 +12,13 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
     try {
-        const res = await axios.get(`${base_url}/users/me`, {
-        withCredentials: true,
-      });
-      setUser(res.data.data);
-      console.log(user)
+      const res = await apiRequest("GET", "/users/me")
+      //   const res = await axios.get(`${base_url}/users/me`, {
+      //   withCredentials: true,
+      // });
+      setUser(res.data)
     } catch (error) {
       setUser(null)
-      console.log(error)
     }
     finally{
       setLoading(false)

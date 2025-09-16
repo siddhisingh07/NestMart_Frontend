@@ -4,20 +4,18 @@ import { HeadingClass } from "../PropsClass";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { base_url } from "../../constant";
+import { apiRequest } from "../../utils/apiRequest";
 
 const MyOrders = () => {
   const [data, setData] = useState([]);
 
   const showData = async () => {
     try {
-      let res = await axios.get(`${base_url}/order/my-orders`, {
-        withCredentials: true,
-      });
-      if (res.data.success) {
-        toast.success(res.data.message);
-        setData(res.data.data);
-        console.log(res.data.data);
-      }
+      let res = await apiRequest("GET", "/order/my-orders" )
+      // let res = await axios.get(`${base_url}/order/my-orders`, {
+      //   withCredentials: true,
+      // });
+        setData(res.data);
     } catch (error) {
       toast.error(error.message);
     }

@@ -4,7 +4,7 @@ import { MdOutlineArrowRightAlt } from "react-icons/md";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { product_1, product_1_back } from "../../../Assets/Assets";
+import { product_1 } from "../../../Assets/Assets";
 import { authContext } from "../../../Context/AuthContext";
 import { base_url } from "../../../constant";
 

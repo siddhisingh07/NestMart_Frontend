@@ -3,20 +3,22 @@ import { product_1 } from "../../Assets/Assets";
 import { base_url } from "../../constant";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { apiRequest } from "../../utils/apiRequest";
 
 const Product_list = () => {
   const [productList, setProductList] = useState(null);
 
   const handleData = async () => {
     try {
-      let res = await axios.get(`${base_url}/admin/product-list`);
+      let res = await apiRequest("GET", "/admin/product-list")
+      // let res = await axios.get(`${base_url}/admin/product-list`);
 
       if (res) {
-        setProductList(res.data.data);
-        toast.success(res.data.message);
+        setProductList(res.data);
+        toast.success(res.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      console.log(error)
     }
   };
 
@@ -43,8 +45,8 @@ const Product_list = () => {
                 <td>Empty</td>
               </tr>
             ) : (
-              productList.map((product) => (
-                <tr key={product?.id} className="border-b hover:bg-gray-50">
+              productList.map((product, idx) => (
+                <tr key={idx} className="border-b hover:bg-gray-50">
                   <td className="py-3 px-4 flex items-center gap-3">
                     <img
                       src={product?.front}

@@ -12,7 +12,7 @@ const BottomBanner = () => {
              </h1>
              {/* <h1 className="text-7xl text-[#253d4e] font-bold"></h1> */}
              <h3 className="text-xl lg:text-xl  text-gray-400 font-light  mt-4 lg:mt-6">
-              Start Your Daily Shopping with <span class="text-green">Nest Mart</span>
+              Start Your Daily Shopping with <span className="text-green">Nest Mart</span>
              </h3>
              <div className=" rounded-full w-72 md:w-96 lg:w-[30rem] mt-10 flex bg-slate-50">
                <input

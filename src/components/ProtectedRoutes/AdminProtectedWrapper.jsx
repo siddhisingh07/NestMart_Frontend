@@ -5,7 +5,6 @@ import { authContext } from "../../Context/AuthContext";
 
 const AdminProtectedWrapper = ({ children }) => {
   const { user, loading } = useContext(authContext);
-  const navigate = useNavigate();
   const location = useLocation();
   const [shouldRedirect, setShouldRedirect] = useState(false);
 

@@ -5,18 +5,16 @@ import { HeadingClass } from "../PropsClass";
 import { base_url } from "../../constant";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { apiRequest } from "../../utils/apiRequest";
 
 const OrdersList = () => {
   const [productList, setProductList] = useState([]);
 
   const orders_List = async () => {
     try {
-      let res = await axios.get(`${base_url}/order/all-order`, {
-        withCredentials: true,
-      });
-      toast.success(res.data.message);
-      setProductList(res.data.data);
-      console.log(productList)
+      let res = await apiRequest("GET", "/order/all-order" )
+      toast.success(res.message);
+      setProductList(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -34,8 +32,8 @@ const OrdersList = () => {
           {productList.length == 0 ? (
             <h1>Loading...</h1>
           ) : (
-            productList.map((item) => (
-              <div className=" w-full border px-4 py-3 rounded text-gray-500">
+            productList.map((item, idx) => (
+              <div key={idx} className=" w-full border px-4 py-3 rounded text-gray-500">
                 <div className="flex items-center justify-between">
                   <div className="flex items-start gap-5">
                     <div>

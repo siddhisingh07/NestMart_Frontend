@@ -30,7 +30,6 @@ const Product = () => {
           },
         ],
       };
-      console.log(productId, price, quantity);
       const res = await axios.post(`${base_url}/cart/add-cart`, data, {
         withCredentials: true,
       });

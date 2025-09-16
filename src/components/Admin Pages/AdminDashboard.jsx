@@ -9,18 +9,18 @@ import { authContext } from "../../Context/AuthContext";
 import toast from "react-hot-toast";
 import OrdersList from "./OrdersList";
 import { base_url } from "../../constant";
+import { apiRequest } from "../../utils/apiRequest";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("add_product");
-  let { user, setUser } = useContext(authContext);
+  let { setUser } = useContext(authContext);
 
   const logout = async () => {
     try {
-      let res = await axios.get(`${base_url}/admin/logout`);
-      setUser(res.data.user);
-      toast.success(res.data.message);
+      let res = await apiRequest("GET", "/admin/logout");
+      setUser(res.user);
     } catch (error) {
-      toast.error(error.message);
+      console.log(error)
     }
   };
 

@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { Card } from "../Common/Card";
 import { CardSkeleton } from "../Sample/CardSkeleton";
 import { base_url } from "../../constant";
+import { apiRequest } from "../../utils/apiRequest";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -14,8 +15,9 @@ const ProductList = () => {
 
   const handleProductList = async () => {
     try {
-      let res = await axios.get(`${base_url}/users/products`);
-      setProductList(res.data.data);
+      let res = await apiRequest("GET", "/users/products")
+      // let res = await axios.get(`${base_url}/users/products`);
+      setProductList(res.data);
     } catch (error) {
       toast.error(error.message);
     }
@@ -27,7 +29,7 @@ const ProductList = () => {
 
   useEffect(() => {
     handleProductList();
-  }, [productList]);
+  }, []);
 
   return (
     <div className="w-full px-3 md:px-10 lg:px-28 bg-gray-50 py-8">

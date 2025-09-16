@@ -86,13 +86,10 @@ const Add_Products = () => {
   return (
     <div className={`w-full p-6 bg-gray-50 rounded-lg relative h-full overflow-y-auto ${loading  ?  "backdrop-blur-2xl" : "backdrop-blur-none"}`}>
       <h1 className="text-2xl font-semibold text-gray-800 mb-6">Add Product</h1>
-      {/* {loading && (
-        <div className="h-12 w-12 rounded-full border-4 border-white"></div>
-      )} */}
+      
       {loading ? (
-        //  <div className="h-12 w-12 rounded-full border-4 border-gray-300 border-t-green-600 animate-spin absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg"></div>
             <div className="fixed inset-0 flex items-center justify-center bg-gray-100 backdrop-blur-sm z-50">
-      <div className="h-14 w-14 rounded-full border-4 border-gray-200 border-t-green-500 animate-spin shadow-[0_0_20px_rgba(34,197,94,0.7)]"></div>
+      <h1 className="text-lg font-semibold text-navy text-shadow">Just a moment! We're loading your content!!</h1>
     </div>
 
       )  :  <form onSubmit={handleSubmit(onSubmit)} className={`space-y-4 `}>
