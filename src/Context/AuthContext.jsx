@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
     try {
-        const res = await axios.get(`${base_url}api/users/me`, {
+        const res = await axios.get(`${base_url}/users/me`, {
         withCredentials: true,
       });
       setUser(res.data.data);
