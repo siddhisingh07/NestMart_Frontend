@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Card } from "../Common/Card";
 import { CardSkeleton } from "../Sample/CardSkeleton";
 import { base_url } from "../../constant";
+import { apiRequest } from "../../utils/apiRequest";
 
 const BestSellers = () => {
   const [productList, setProductList] = useState(null);
@@ -14,8 +15,8 @@ const BestSellers = () => {
 
   const handleProductList = async () => {
     try {
-      let res = await axios.get(`${base_url}/users/best-sellers`);
-      setProductList(res.data.data);
+      let res = await apiRequest("GET", "/users/best-sellers")
+      setProductList(res.data);
     } catch (error) {
       toast.error(error.message);
     }
@@ -29,7 +30,7 @@ const BestSellers = () => {
     <div className="w-full px-3 md:px-10 lg:px-28 bg-gray-50 py-8">
       <Heading value={new HeadingClass("Best Sellers", "start", 80, 20)} />
 
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap items-center justify-center md:items-start md:justify-start">
         {productList == null ? (
           [...Array(4)].map((_, i)=> <CardSkeleton key={i}/> )
         ) : (

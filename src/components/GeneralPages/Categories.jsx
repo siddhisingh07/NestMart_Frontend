@@ -26,28 +26,25 @@ const Categories = () => {
 
   let images = [cat_3,  cat_2, cat_1, cat_4, cat_5, cat_6, cat_7, cat_8, cat_2]
 
-  const handleData = async () => {
-    try {
-      const res = await apiRequest("GET", "/users/category")
-      setCategoryList(res.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ const handleData = async () => {
+  try {
+    const res = await apiRequest("GET", "/users/category");
+
+    const categoryWithImages = res.data.map((obj, idx) => ({
+      ...obj,
+      img: images[idx % images.length],
+    }));
+
+    setCategoryList(categoryWithImages);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   useEffect(() => {
     handleData();
   }, []);
-
-  useEffect(()=>{
-   if(categoryList){
-      let category = categoryList.map((obj, idx)=>({
-      ...obj,
-      img : images[idx% images.length]
-    }))
-    setCategoryList(category)
-   }
-  }, [])
 
   return (
     <div className="w-ful px-3 md:px-10 lg:px-28 bg-gray-50 py-4">

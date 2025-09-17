@@ -6,6 +6,7 @@ import { Card } from "../../Common/Card";
 import { HeadingClass } from "../../PropsClass";
 import { base_url } from "../../../constant";
 import { CardSkeleton } from "../../Sample/CardSkeleton";
+import { apiRequest } from "../../../utils/apiRequest";
 
 const RelatedProducts = (value) => {
   const [productData, setProductData] = useState(null);
@@ -14,10 +15,8 @@ const RelatedProducts = (value) => {
 
   //Product details
   const handleData = async () => {
-    let res = await axios.get(
-      `${base_url}/users/category/${value.value}`
-    );
-    setProductData(res.data.data);
+    let res = await apiRequest("GET", `/users/category/${value.value}`)
+    setProductData(res.data);
   };
 
   useEffect(() => {
@@ -26,10 +25,8 @@ const RelatedProducts = (value) => {
 
   //related product data
   const handleProductData = async () => {
-    let res = await axios.get(
-      `${base_url}/users/category/${category}/${id}`
-    );
-    setProduct(res.data.data);
+    let res = await apiRequest("GET", `/users/category/${category}/${id}`)
+    setProduct(res.data);
   };
 
   useEffect(() => {

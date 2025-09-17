@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { HeadingClass } from "../../PropsClass";
 import {Card} from '../../Common/Card'
 import { CardSkeleton } from "../../Sample/CardSkeleton";
+import { apiRequest } from "../../../utils/apiRequest";
 
 const CategorizedProduct = () => {
   const [productList, setProductList] = useState(null);
@@ -21,7 +22,8 @@ const CategorizedProduct = () => {
 
   const handleData = async () => {
   try {
-      let res = await axios.get(`${base_url}/users/category/${category}`);
+    let res = await apiRequest("GET", `/users/category/${category}`)
+      // let res = await axios.get(`${base_url}/users/category/${category}`);
      setProductList(res.data.data);
   
   } catch (error) {
@@ -38,7 +40,7 @@ const CategorizedProduct = () => {
   }, [category]);
   return (
     <>
-      <div className="px-4 md:px-10 lg:px-28">
+      <div className="px-4 md:px-10 lg:px-28 py-6">
         
          <Heading
         value={new HeadingClass(param.category, "start")}

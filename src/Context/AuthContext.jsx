@@ -9,14 +9,16 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [cartSize, setCartSize] = useState("")
 
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     const checkAuth = async () => {
     try {
       // const res = await apiRequest("GET", "/users/me")
-        const res = await axios.get(`${base_url}/users/me`, {
+        const res = await axios.get(`${baseURL}/users/me`, {
         withCredentials: true,
       });
-      setUser(res.data)
+      setUser(res.data.data)
     } catch (error) {
       setUser(null)
     }

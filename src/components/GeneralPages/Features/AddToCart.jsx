@@ -7,8 +7,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { product_1 } from "../../../Assets/Assets";
 import { authContext } from "../../../Context/AuthContext";
 import { base_url } from "../../../constant";
+import { apiRequest } from "../../../utils/apiRequest";
 
 const AddToCart = () => {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
@@ -26,11 +28,12 @@ const AddToCart = () => {
   // Fetch cart from backend
   const handleCart = async () => {
     try {
-      let res = await axios.get(`${base_url}/cart/`, {
-        withCredentials: true,
-      });
-      if (res.data?.data) {
-        setCart(res.data.data.items || []);
+      let res = await apiRequest("GET", `/cart/`)
+      // let res = await axios.get(`${base_url}/cart/`, {
+      //   withCredentials: true,
+      // });
+      if (res?.data) {
+        setCart(res.data.items || []);
       }
     } catch (error) {
        setCart([]);
@@ -80,11 +83,13 @@ const AddToCart = () => {
         shippingAddress,
       };
 
-      const res = await axios.post(`${base_url}/order`, order, {
-        withCredentials: true,
-      });
+      const res = await apiRequest("POST", `/order` , order)
 
-       toast.success(res.data.message || "Order placed successfully!");
+      // const res = await axios.post(`${base_url}/order`, order, {
+      //   withCredentials: true,
+      // });
+
+       toast.success(res?.message || "Order placed successfully!");
        navigate("/my-orders");
 
       if (res) {
@@ -119,10 +124,11 @@ const AddToCart = () => {
       setTotalAmount(total);
 
       await axios.put(
-        `http://localhost:3000/api/cart/${productId}`,
+        `${baseURL}/cart/${productId}`,
         { quantity: parseInt(newQuantity) },
         { withCredentials: true }
       );
+
 
       toast.success("Quantity updated!");
     } catch (err) {
@@ -132,9 +138,10 @@ const AddToCart = () => {
 
   const removeItem = async (productId) => {
     try {
-      await axios.delete(`http://localhost:3000/api/cart/remove/${productId}`, {
-        withCredentials: true,
-      });
+      await apiRequest("DELETE", `/cart/remove/${productId}`)
+      // await axios.delete(`http://localhost:3000/api/cart/remove/${productId}`, {
+      //   withCredentials: true,
+      // });
       toast.success("Item removed from cart");
       handleCart();
     } catch (error) {

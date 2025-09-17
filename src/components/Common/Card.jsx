@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { base_url } from "../../constant";
 import { useNavigate } from "react-router-dom";
+import { apiRequest } from "../../utils/apiRequest";
 
 export const Card = ({ value }) => {
   const navigate = useNavigate();
@@ -27,24 +28,16 @@ const handleCart = async (productId, price, quantity) => {
       ],
     };
 
-    const res = await axios.post(`${base_url}/cart/add-cart`, data, {
-      withCredentials: true,
-    });
+    // const res = await axios.post(`${base_url}/cart/add-cart`, data, {
+    //   withCredentials: true,
+    // });
 
-    toast.success(res.data.message || "Added to cart!");
+    const res = await apiRequest("POST", `/cart/add-cart`, data, navigate)
+
+    toast.success(res.message || "Added to cart!");
     navigate("/cart");
   } catch (error) {
-    if(error.response){
-
-    }
-    else if(error.request){
-
-    }else{
-
-    }
-    console.log(error)
-    toast.error(error.response.data.message)
-    navigate("/login")
+  
   }
 };
 
@@ -62,7 +55,7 @@ const handleCart = async (productId, price, quantity) => {
         }}
         onMouseEnter={() => setHoveredIndex(value.idx)}
         onMouseLeave={() => setHoveredIndex(null)}
-        className="w-[19rem] md:w-[18rem] lg:w-[19rem] xl:w-[19rem] 2xl:w-[20rem] bg-white border-gray-200 border rounded-2xl overflow-hidden shadow hover:border hover:border-green hover:shadow-md transition-all hover:scale-[1.01] duration-700 relative"
+        className="w-[19rem] md:w-[18rem] lg:w-[19rem] xl:w-[18.5rem] 2xl:w-[19rem] bg-white border-gray-200 border rounded-2xl overflow-hidden shadow hover:border hover:border-green hover:shadow-md transition-all hover:scale-[1.01] duration-700 relative"
       >
         <div className="w-full flex items-center justify-start z-50">
           <span

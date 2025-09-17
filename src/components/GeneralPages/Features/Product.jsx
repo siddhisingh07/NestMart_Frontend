@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { base_url } from "../../../constant";
+import { apiRequest } from "../../../utils/apiRequest";
 
 const Product = () => {
   const { id, category } = useParams();
@@ -13,10 +14,11 @@ const Product = () => {
   const navigate = useNavigate();
 
   const handleData = async () => {
-    let res = await axios.get(
-      `${base_url}/users/category/${category}/${id}`
-    );
-    setProduct(res.data.data);
+    let res = await apiRequest("GET", `/users/category/${category}/${id}` )
+    // let res = await axios.get(
+    //   `${base_url}/users/category/${category}/${id}`
+    // );
+    setProduct(res.data);
   };
 
   const handleCart = async (productId, price, quantity = 1) => {
@@ -30,17 +32,18 @@ const Product = () => {
           },
         ],
       };
-      const res = await axios.post(`${base_url}/cart/add-cart`, data, {
-        withCredentials: true,
-      });
-      toast.success(res.data.message);
+      const res =await apiRequest("POST", `/cart/add-cart`, data, navigate)
+      // const res = await axios.post(`${base_url}/cart/add-cart`, data, {
+      //   withCredentials: true,
+      // });
+      toast.success(res.message);
       navigate("/cart");
     } catch (error) {
-      if (!error.response.data.success) {
-        toast.error("Please Login First");
-        navigate("/login");
-      }
-      toast.error(error.message);
+      // if (!error.response.data.success) {
+      //   toast.error("Please Login First");
+      //   navigate("/login");
+      // }
+      // toast.error(error.message);
     }
   };
 

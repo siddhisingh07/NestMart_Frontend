@@ -7,6 +7,7 @@ import { Card } from "../../Common/Card";
 import { CardSkeleton } from "../../Sample/CardSkeleton";
 import toast from "react-hot-toast";
 import { base_url } from "../../../constant";
+import { apiRequest } from "../../../utils/apiRequest";
 
 export const SearchList = () => {
   const [productList, setProductList] = useState(null);
@@ -18,12 +19,13 @@ export const SearchList = () => {
   useEffect(() => {
     const handleSearch = async () => {
       try {
-        let res = await axios.get(
-          `${base_url}/users/search?q=${query}`
-        );
+        let res = await apiRequest("GET", `/users/search?q=${query}`)
+        // let res = await axios.get(
+        //   `${base_url}/users/search?q=${query}`
+        // );
         console.log("API response:", res.data);
 
-        setProductList(res.data.data );
+        setProductList(res.data );
       } catch (error) {
         toast.error(error.message)
       }

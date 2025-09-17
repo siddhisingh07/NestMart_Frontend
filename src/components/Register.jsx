@@ -5,6 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { base_url } from "../constant";
 import { apiRequest } from "../utils/apiRequest";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { authContext } from "../Context/AuthContext";
 
 const schema = yup
   .object()
@@ -19,6 +22,9 @@ const schema = yup
   .required();
 
 const Register = () => {
+
+  const navigate = useNavigate();
+  const {user, setUser } = useContext(authContext)
   const {
     register,
     handleSubmit,
@@ -28,9 +34,10 @@ const Register = () => {
   });
   const submitHandler = async (data) => {
     try {
-      const res = await apiRequest("POST", "/users/register" , data)
+      const res = await apiRequest("POST", "/users/register" , data, navigate)
       // const response = await axios.post(`${base_url}/users/register`, data, { withCredentials: true } );
-      toast.success(response.data?.message);
+      toast.success(res.message);
+      setUser(res.data)
       navigate("/")
     } catch (error) {
       console.log(error)
