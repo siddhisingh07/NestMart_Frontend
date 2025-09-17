@@ -2,9 +2,7 @@ import toast from "react-hot-toast"
 
 export const handleError = (error, navigate=null)=>{
     if(error.response){
-        toast.error(error.response.data.message)
-        console.log(error.response.data.message)
-        console.log(error.response.data.error.statusCode)
+        toast.error("Please login first!");
         if (error?.response?.data?.error?.statusCode == 401 && navigate) {
             setTimeout(()=>{
                 navigate("/login")
