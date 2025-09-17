@@ -24,7 +24,7 @@ const CategorizedProduct = () => {
   try {
     let res = await apiRequest("GET", `/users/category/${category}`)
       // let res = await axios.get(`${base_url}/users/category/${category}`);
-     setProductList(res.data.data);
+     setProductList(res.data);
   
   } catch (error) {
     console.error(error)
