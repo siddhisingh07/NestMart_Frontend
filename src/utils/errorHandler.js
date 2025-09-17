@@ -4,10 +4,11 @@ export const handleError = (error, navigate=null)=>{
     if(error.response){
         toast.error(error.response.data.message)
         console.log(error.response.data.message)
-        if (error.response?.status == 401 && navigate) {
+        console.log(error.response.data.error.statusCode)
+        if (error?.response?.data?.error?.statusCode == 401 && navigate) {
             setTimeout(()=>{
                 navigate("/login")
-            }, 1000)
+            }, 100)
         }
     }
     else if(error.request){

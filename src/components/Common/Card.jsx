@@ -4,8 +4,6 @@ import { IoHeart, IoStar, IoStarSharp } from "react-icons/io5";
 import { FaRegEye } from "react-icons/fa6";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
-import { base_url } from "../../constant";
 import { useNavigate } from "react-router-dom";
 import { apiRequest } from "../../utils/apiRequest";
 
