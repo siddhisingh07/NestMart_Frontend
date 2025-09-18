@@ -1,7 +1,5 @@
 import axios from 'axios';
 import {createContext, useState, useEffect} from 'react'
-import { base_url } from '../constant';
-import { apiRequest } from '../utils/apiRequest';
 export const authContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -19,6 +17,7 @@ export const AuthProvider = ({ children }) => {
         withCredentials: true,
       });
       setUser(res.data.data)
+      console.log(res.data.data, "data")
     } catch (error) {
       setUser(null)
     }

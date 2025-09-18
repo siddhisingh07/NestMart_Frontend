@@ -111,9 +111,9 @@ const Navbar = () => {
                   </div>
                   <div
                     className="hover:bg-light_green cursor-pointer py-2 px-3 text-sm"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() =>{ setIsOpen(false); navigate("/cart")}}
                   >
-                    Profile
+                    Cart
                   </div>
                 </div>
               )}

@@ -6,39 +6,41 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { apiRequest } from "../../utils/apiRequest";
+import axios from "axios";
 
 export const Card = ({ value }) => {
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const handleClick = (id, category) => {
     navigate(`/products/${category}/${id}`);
   };
 
-const handleCart = async (productId, price, quantity) => {
-  try {
-    const data = {
-      items: [
-        {
-          product: productId,
-          quantity: quantity,
-          price: price,
-        },
-      ],
-    };
+  const handleCart = async (productId, price, quantity) => {
+    try {
+      const data = {
+        items: [
+          {
+            product: productId,
+            quantity: quantity,
+            price: price,
+          },
+        ],
+      };
 
-    // const res = await axios.post(`${base_url}/cart/add-cart`, data, {
-    //   withCredentials: true,
-    // });
+      const res = await axios.post(`${baseURL}/cart/add-cart`, data, {
+        withCredentials: true,
+      });
 
-    const res = await apiRequest("POST", `/cart/add-cart`, data, navigate)
+      // const res = await apiRequest("POST", `/cart/add-cart`, data, navigate);
 
-    toast.success(res.message || "Added to cart!");
-    navigate("/cart");
-  } catch (error) {
-  
-  }
-};
-
+      toast.success(res.message || "Added to cart!");
+      navigate("/cart");
+    } catch (error) {
+      navigate("/login");
+      console.log(error)
+    }
+  };
 
   const handleButtonClick = (e, productId, price, quantity = 1) => {
     e.stopPropagation();
@@ -53,7 +55,7 @@ const handleCart = async (productId, price, quantity) => {
         }}
         onMouseEnter={() => setHoveredIndex(value.idx)}
         onMouseLeave={() => setHoveredIndex(null)}
-        className="w-[19rem] md:w-[18rem] lg:w-[19rem] xl:w-[18.5rem] 2xl:w-[19rem] bg-white border-gray-200 border rounded-2xl overflow-hidden shadow hover:border hover:border-green hover:shadow-md transition-all hover:scale-[1.01] duration-700 relative"
+        className="w-[19rem] md:w-[18rem] lg:w-[19rem] xl:w-[18.5rem] 2xl:w-[18.7rem] bg-white border-gray-200 border rounded-2xl overflow-hidden shadow hover:border hover:border-green hover:shadow-md transition-all hover:scale-[1.01] duration-700 relative"
       >
         <div className="w-full flex items-center justify-start z-50">
           <span
