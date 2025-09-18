@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       console.log(res.data.data, "data")
     } catch (error) {
       setUser(null)
-      toast.error(error.message)
+      // toast.error(error.message)
     }
     finally{
       setLoading(false)

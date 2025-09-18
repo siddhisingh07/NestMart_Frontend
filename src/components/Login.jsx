@@ -23,6 +23,7 @@ const schema = yup
 const Login = () => {
   let {setUser } = useContext(authContext);
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_API_BASE_URL;
 
   const location = useLocation();
 
@@ -38,7 +39,7 @@ const Login = () => {
 
   const submitHandler = async (data) => {
     try {
-      let res = await axios.post(`${base_url}/users/login`, data, {
+      let res = await axios.post(`${baseURL}/users/login`, data, {
         withCredentials: true,
       });
       setUser(res.data.data.userData);
