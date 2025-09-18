@@ -35,7 +35,6 @@ const Register = () => {
   const submitHandler = async (data) => {
     try {
       const res = await apiRequest("POST", "/users/register" , data, navigate)
-      // const response = await axios.post(`${base_url}/users/register`, data, { withCredentials: true } );
       toast.success(res.message);
       setUser(res.data)
       navigate("/")

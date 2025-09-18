@@ -7,6 +7,7 @@ import { IoMdCheckboxOutline } from "react-icons/io";
 import { authContext } from "../../Context/AuthContext";
 import OrdersList from "./OrdersList";
 import { apiRequest } from "../../utils/apiRequest";
+import toast from "react-hot-toast";
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("add_product");
@@ -15,7 +16,8 @@ const AdminDashboard = () => {
   const logout = async () => {
     try {
       let res = await apiRequest("GET", "/admin/logout");
-      setUser(res.user);
+      setUser("");
+      toast.success(res.data.message)
     } catch (error) {
       console.log(error);
     }
