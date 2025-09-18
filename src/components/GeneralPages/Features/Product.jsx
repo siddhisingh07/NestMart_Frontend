@@ -52,68 +52,89 @@ const Product = () => {
   }, [id, category]);
 
   return (
-    <>
-      {product == null ? (
-        <h1>Deatils can't fetched</h1>
-      ) : (
-        <div className="flex px-4 md:px-10 lg:px-28 py-16 gap-8 sm:flex-col lg:flex-row">
-          <div className="w-1/3 sm:w-full border flex pt-10 justify-center lg:w-1/3">
-            <img src={product.front} alt="" className="h-96 w-96 sm:w-80 sm:h-80" />
-          </div>
-          <div className="w-2/3 sm:w-full lg:w-2/3 py-3">
-            <span className="px-4 py-1 bg-light_green text-green rounded">
-              Sale!
-            </span>
-            <h1 className="text-navy text-4xl font-semibold w-2/3 mt-4">
-              {product.productName}
-            </h1>
-            <div className="my-3">
-              {[...Array(5)].map((_, idx) => (
-                <IoStarSharp
-                  key={idx}
-                  className="inline text-yellow-500 text-base"
-                />
-              ))}
-            </div>
-            <h1 className="text-base line-through text-gray-400 font-light ">
-              MRP: ${product.productPrice}
-            </h1>
-            <h1 className="text-xl ">
-              MRP: $<span className="underline">{product.offerPrice}</span>
-            </h1>
-            <span className="text-gray-400 text-base font-light">
-              (inclusive of all taxes)
-            </span>
+ <>
+  {product == null ? (
+    <h1>Details can't be fetched</h1>
+  ) : (
+    <div className="flex flex-col lg:flex-row px-4 md:px-10 lg:px-28 py-8 gap-6">
+      {/* Product Image */}
+      <div className="w-full lg:w-1/3 border flex justify-center items-center p-4">
+        <img
+          src={product.front}
+          alt=""
+          className="h-80 w-80 object-contain sm:w-72 sm:h-72"
+        />
+      </div>
 
-            <p className="w-2/3 sm:w-full text-gray-500  font-normal">
-              {product.description} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione laboriosam iure consequatur reiciendis earum necessitatibus, dolorem deserunt tempora enim animi culpa consequuntur quidem molestiae esse repellendus expedita sunt ipsa officiis.
-            </p>
-            <span className="text-yellow-500 font-light">
-              {product.stock} in stock
-            </span>
-            <div className="w-full flex gap-2 ">
-              <button
-                className="text-green flex items-center justify-center bg-light_green py-4 w-1/4  lg:py-3  rounded-sm text-base mt-5"
-                onClick={() => {
-                  handleCart(product._id, product.offerPrice, product.quantity);
-                }}
-              >
-                Add to cart
-              </button>
-              <button
-                className="text-gray-50 flex items-center justify-center bg-green py-4 w-1/4 lg:py-3  rounded-sm text-base mt-5"
-                onClick={() => {
-                  handleCart(product._id, product.offerPrice, product.quantity);
-                }}
-              >
-                Buy now
-              </button>
-            </div>
-          </div>
+      {/* Product Details */}
+      <div className="w-full lg:w-2/3 flex flex-col gap-4">
+        <span className="px-4 py-1 bg-light_green text-green rounded w-max">
+          Sale!
+        </span>
+
+        <h1 className="text-navy text-3xl md:text-4xl font-semibold">
+          {product.productName}
+        </h1>
+
+        <div className="my-2">
+          {[...Array(5)].map((_, idx) => (
+            <IoStarSharp
+              key={idx}
+              className="inline text-yellow-500 text-base"
+            />
+          ))}
         </div>
-      )}
-      <RelatedProducts value={category} />
-    </>
+
+        <div className="flex flex-col gap-1">
+          <h1 className="text-base line-through text-gray-400 font-light">
+            MRP: ${product.productPrice}
+          </h1>
+          <h1 className="text-xl">
+            MRP: $<span className="underline">{product.offerPrice}</span>
+          </h1>
+          <span className="text-gray-400 text-sm font-light">
+            (inclusive of all taxes)
+          </span>
+        </div>
+
+        <p className="text-gray-500 font-normal text-sm md:text-base">
+          {product.description} Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit. Ratione laboriosam iure consequatur reiciendis
+          earum necessitatibus, dolorem deserunt tempora enim animi culpa
+          consequuntur quidem molestiae esse repellendus expedita sunt ipsa
+          officiis.
+        </p>
+
+        <span className="text-yellow-500 font-light">
+          {product.stock} in stock
+        </span>
+
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
+          <button
+            className="text-green bg-light_green py-3 w-full sm:w-1/2 rounded-sm text-base"
+            onClick={() =>
+              handleCart(product._id, product.offerPrice, product.quantity)
+            }
+          >
+            Add to cart
+          </button>
+          <button
+            className="text-white bg-green py-3 w-full sm:w-1/2 rounded-sm text-base"
+            onClick={() =>
+              handleCart(product._id, product.offerPrice, product.quantity)
+            }
+          >
+            Buy now
+          </button>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <RelatedProducts value={category} />
+</>
+
   );
 };
 
