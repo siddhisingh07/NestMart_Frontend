@@ -43,7 +43,7 @@ const RelatedProducts = (value) => {
 
       <div className="flex gap-4 flex-wrap py-3">
         {productData == null ? (
-          [...Array(4)].map((_, i)=> <CardSkeleton key={i}/>)
+          [...Array(3)].map((_, i)=> <CardSkeleton key={i}/>)
         ) : (
           productData.map((item, idx) => {
               let off =

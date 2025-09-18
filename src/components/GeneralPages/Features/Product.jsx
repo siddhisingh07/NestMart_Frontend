@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { base_url } from "../../../constant";
 import { apiRequest } from "../../../utils/apiRequest";
+import ProductCardSkeleton from "../../Sample/ProductCardSkeleton";
 
 const Product = () => {
   const { id, category } = useParams();
@@ -54,7 +55,7 @@ const Product = () => {
   return (
  <>
   {product == null ? (
-    <h1>Details can't be fetched</h1>
+   <ProductCardSkeleton/>
   ) : (
     <div className="flex flex-col lg:flex-row px-4 md:px-10 lg:px-28 py-8 gap-6">
       {/* Product Image */}
