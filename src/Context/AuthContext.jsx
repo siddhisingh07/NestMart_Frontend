@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {createContext, useState, useEffect} from 'react'
+import toast from 'react-hot-toast';
 export const authContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -20,6 +21,7 @@ export const AuthProvider = ({ children }) => {
       console.log(res.data.data, "data")
     } catch (error) {
       setUser(null)
+      toast.error(error.message)
     }
     finally{
       setLoading(false)

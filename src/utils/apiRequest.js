@@ -15,6 +15,7 @@ export const apiRequest = async(method, url, data= {}, navigate=null)=>{
         return response.data
     } catch (error) {
         handleError(error, navigate)
+        console.log(error)
         throw error
     }
 }

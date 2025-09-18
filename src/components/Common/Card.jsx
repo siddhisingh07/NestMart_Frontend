@@ -37,8 +37,9 @@ export const Card = ({ value }) => {
       toast.success(res.message || "Added to cart!");
       navigate("/cart");
     } catch (error) {
+       console.log(error, "err");
       navigate("/login");
-      console.log(error)
+     
     }
   };
 

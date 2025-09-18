@@ -38,14 +38,12 @@ const Login = () => {
 
   const submitHandler = async (data) => {
     try {
-      let res = await apiRequest("POST", "/users/login", data)
-      // let response = await axios.post(`${base_url}/users/login`, data, {
-      //   withCredentials: true,
-      // });
-      // toast.success(response.data.message);
-      setUser(res.data.userData);
+      let res = await axios.post(`${base_url}/users/login`, data, {
+        withCredentials: true,
+      });
+      setUser(res.data.data.userData);
       navigate(from, {replace : true}  );
-      console.log(res)
+      console.log(res, "Res", from,  )
     } catch (error) {
       if (error.response && error.response.data) {
         toast.error(error.response.data.message);
