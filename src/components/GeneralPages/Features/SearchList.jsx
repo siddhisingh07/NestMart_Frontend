@@ -20,9 +20,6 @@ export const SearchList = () => {
     const handleSearch = async () => {
       try {
         let res = await apiRequest("GET", `/users/search?q=${query}`)
-        // let res = await axios.get(
-        //   `${base_url}/users/search?q=${query}`
-        // );
         console.log("API response:", res.data);
 
         setProductList(res.data );
@@ -40,7 +37,7 @@ export const SearchList = () => {
     <div className="w-full px-3 md:px-10 lg:px-28 bg-gray-50 py-8">
       <Heading value={new HeadingClass("Your daily choice", "start", 80, 20)} />
 
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap items-center justify-center md:items-start md:justify-start">
        {productList === null ? (
     [...Array(4)].map((_, i) => <CardSkeleton key={i} />)
   ) : productList.length === 0 ? (

@@ -41,7 +41,7 @@ const RelatedProducts = (value) => {
         value = {new HeadingClass("Related Products", "start")}  
       />
 
-      <div className="flex gap-4 flex-wrap py-3">
+      <div className="flex gap-4 flex-wrap items-center justify-center md:items-start md:justify-start">
         {productData == null ? (
           [...Array(3)].map((_, i)=> <CardSkeleton key={i}/>)
         ) : (
